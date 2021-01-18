@@ -25,7 +25,7 @@ model = dict(
         upsample_cfg=dict(mode='bilinear')),
     bbox_head=dict(
         type='YOLACTHead',
-        num_classes=80,
+        num_classes=17,
         in_channels=256,
         feat_channels=256,
         anchor_generator=dict(
@@ -54,12 +54,12 @@ model = dict(
         type='YOLACTProtonet',
         in_channels=256,
         num_protos=32,
-        num_classes=80,
+        num_classes=17,
         max_masks_to_train=100,
         loss_mask_weight=6.125),
     segm_head=dict(
         type='YOLACTSegmHead',
-        num_classes=80,
+        num_classes=17,
         in_channels=256,
         loss_segm=dict(
             type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0)),
@@ -128,22 +128,22 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=8,
+    samples_per_gpu=1,
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_train2017.json',
-        img_prefix=data_root + 'train2017/',
+        ann_file=data_root + 'annotations/train_segmentation.json',
+        img_prefix=data_root + 'images_train/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file=data_root + 'annotations/test_segmentation.json',
+        img_prefix=data_root + 'images_test/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file=data_root + 'annotations/test_segmentation.json',
+        img_prefix=data_root + 'images_test/',
         pipeline=test_pipeline))
 # optimizer
 optimizer = dict(type='SGD', lr=1e-3, momentum=0.9, weight_decay=5e-4)
@@ -155,6 +155,6 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=0.1,
     step=[20, 42, 49, 52])
-total_epochs = 55
+total_epochs = 30
 cudnn_benchmark = True
 evaluation = dict(metric=['bbox', 'segm'])
