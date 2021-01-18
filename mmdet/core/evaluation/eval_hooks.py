@@ -47,7 +47,7 @@ class EvalHook(Hook):
     def __init__(self,
                  dataloader,
                  start=None,
-                 interval=1,
+                 interval=15,
                  save_best=None,
                  rule=None,
                  **eval_kwargs):
