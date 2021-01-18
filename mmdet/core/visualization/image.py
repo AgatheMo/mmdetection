@@ -1,6 +1,7 @@
 import os.path as osp
 import warnings
-
+import matplotlib
+matplotlib.use('pdf')
 import matplotlib.pyplot as plt
 import mmcv
 import numpy as np
