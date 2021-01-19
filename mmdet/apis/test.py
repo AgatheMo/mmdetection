@@ -17,7 +17,7 @@ def single_gpu_test(model,
                     data_loader,
                     show=False,
                     out_dir=None,
-                    show_score_thr=0.3):
+                    show_score_thr=0.8):
     model.eval()
     results = []
     dataset = data_loader.dataset
