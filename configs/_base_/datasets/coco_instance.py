@@ -38,11 +38,11 @@ data = dict(
     val=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/test_segmentation.json',
-        img_prefix=data_root + 'images_test/',
+        img_prefix=data_root + 'images_test_SJ/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/test_segmentation.json',
-        img_prefix=data_root + 'images_test/',
+        img_prefix=data_root + 'images_test_SJ/',
         pipeline=test_pipeline))
 evaluation = dict(metric=['bbox', 'segm'])
