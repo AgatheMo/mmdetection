@@ -128,8 +128,8 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=8,
-    workers_per_gpu=4,
+    samples_per_gpu=1,
+    workers_per_gpu=2,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/train_segmentation.json',
@@ -146,7 +146,7 @@ data = dict(
         img_prefix=data_root + 'images_test/',
         pipeline=test_pipeline))
 # optimizer
-optimizer = dict(type='SGD', lr=1e-3, momentum=0.9, weight_decay=5e-4)
+optimizer = dict(type='SGD', lr=0.0025, momentum=0.9, weight_decay=5e-4)
 optimizer_config = dict()
 # learning policy
 lr_config = dict(
@@ -155,6 +155,6 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=0.1,
     step=[20, 42, 49, 52])
-total_epochs = 55
+total_epochs = 18
 cudnn_benchmark = True
 evaluation = dict(metric=['bbox', 'segm'])
