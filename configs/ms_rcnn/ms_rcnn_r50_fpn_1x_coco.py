@@ -14,3 +14,4 @@ model = dict(
             num_classes=17)))
 # model training and testing settings
 train_cfg = dict(rcnn=dict(mask_thr_binary=0.5))
+work_dir = './sortie/'
