@@ -554,6 +554,8 @@ class CocoDataset(CustomDataset):
             if not isinstance(metric_items, list):
                 metric_items = [metric_items]
 
+        result_files, tmp_dir = self.format_results(results, jsonfile_prefix)
+        
         eval_results = OrderedDict()
         cocoGt = self.coco
         for metric in metrics:
