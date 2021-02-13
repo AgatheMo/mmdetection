@@ -97,7 +97,7 @@ def parse_args():
         args.eval_options = args.options
     return args
 
- def load_predictions_pp(predictions_file):
+def load_predictions_pp(predictions_file):
     with open(predictions_file) as json_file:
       predictions_pp = json.load(json_file)
       json_file.close()
