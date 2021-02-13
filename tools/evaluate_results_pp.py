@@ -97,6 +97,12 @@ def parse_args():
         args.eval_options = args.options
     return args
 
+ def load_predictions_pp(predictions_file):
+    with open(predictions_file) as json_file:
+      predictions_pp = json.load(json_file)
+      json_file.close()
+    return(predictions_pp)
+    
 
 def main():
     args = parse_args()
@@ -178,14 +184,14 @@ def main():
 
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
-        outputs = "./sortie/predictions_pp.json"
+        outputs = load_predictions_pp('./sortie/predictions_pp.json')
 
     else:
         model = MMDistributedDataParallel(
             model.cuda(),
             device_ids=[torch.cuda.current_device()],
             broadcast_buffers=False)
-        outputs = "./sortie/predictions_pp.json"
+        outputs = load_predictions_pp('./sortie/predictions_pp.json')
     rank, _ = get_dist_info()
     if rank == 0:
         if args.out:
