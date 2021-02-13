@@ -184,14 +184,14 @@ def main():
 
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
-        outputs = load_predictions_pp('./sortie/predictions_pp.json')
+        outputs = load_predictions_pp('mmdetection/sortie/predictions_pp.json')
 
     else:
         model = MMDistributedDataParallel(
             model.cuda(),
             device_ids=[torch.cuda.current_device()],
             broadcast_buffers=False)
-        outputs = load_predictions_pp('./sortie/predictions_pp.json')
+        outputs = load_predictions_pp('mmdetection/sortie/predictions_pp.json')
     rank, _ = get_dist_info()
     if rank == 0:
         if args.out:
