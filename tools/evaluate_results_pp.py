@@ -4,7 +4,7 @@ import warnings
 import numpy as np
 import mmcv
 import torch
-import np
+import numpy as np
 from mmcv import Config, DictAction
 from mmcv.cnn import fuse_conv_bn
 from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
