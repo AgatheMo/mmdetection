@@ -91,7 +91,7 @@ def single_gpu_test_pp(model,
     for i, data in enumerate(data_loader):
         with torch.no_grad():
             result = model(return_loss=False, rescale=True, **data)
-        result=post_processing(result)
+        #result=post_processing(result)
         
         batch_size = len(result)
         if show or out_dir:
