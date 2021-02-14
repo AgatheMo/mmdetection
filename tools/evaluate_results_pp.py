@@ -97,20 +97,6 @@ def parse_args():
         args.eval_options = args.options
     return args
 
-def post_processing(results):
-    results_pp=[]
-    det_pp=[]
-    for idx in range(len(results)):
-        det, seg = results[idx]
-        det_pp=[]
-        segm_pp=[]
-        for label in range(len(det)):
-            bboxes=det[label]
-            segms=seg[label]
-            det_pp.append(np.array([bboxes[0]]))
-            segm_pp.append(np.array([segms[0]]))
-        results_pp.append((det_pp,segm_pp))
-    return(results_pp)
 
 def main():
     args = parse_args()
@@ -192,7 +178,7 @@ def main():
 
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
-        outputs = single_gpu_test(model, data_loader, args.show, args.show_dir,
+        outputs = single_gpu_test_pp(model, data_loader, args.show, args.show_dir,
                                   args.show_score_thr)
 
     else:
@@ -203,7 +189,6 @@ def main():
         outputs = multi_gpu_test(model, data_loader, args.tmpdir,
                                  args.gpu_collect)
     
-    outputs = post_processing(outputs)
     rank, _ = get_dist_info()
     if rank == 0:
         if args.out:
