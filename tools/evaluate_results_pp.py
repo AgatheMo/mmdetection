@@ -1,7 +1,7 @@
 import argparse
 import os
 import warnings
-import json
+import numpy as np
 import mmcv
 import torch
 from mmcv import Config, DictAction
@@ -97,12 +97,19 @@ def parse_args():
         args.eval_options = args.options
     return args
 
-def load_predictions_pp(predictions_file):
-    with open(predictions_file) as json_file:
-      predictions_pp = json.load(json_file)
-      json_file.close()
-    return(predictions_pp)
-    
+def post_processing(results):
+    results_pp=[]
+    det_pp=[]
+    for idx in range(len(results)):
+        det, seg = results[idx]
+        det_pp=[]
+        segm_pp=[]
+      for label in range(len(det)):
+          bboxes=det[label]
+          segms=seg[label]
+          det_pp.append(np.array([bboxes[0]]))
+          segm_pp.append(np.array([segms[0]]))
+      results_pp.append((det_pp,segm_pp))
 
 def main():
     args = parse_args()
@@ -184,14 +191,18 @@ def main():
 
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
-        outputs = load_predictions_pp('./sortie/predictions_pp.json')
+        outputs = single_gpu_test(model, data_loader, args.show, args.show_dir,
+                                  args.show_score_thr)
 
     else:
         model = MMDistributedDataParallel(
             model.cuda(),
             device_ids=[torch.cuda.current_device()],
             broadcast_buffers=False)
-        outputs = load_predictions_pp('./sortie/predictions_pp.json')
+        outputs = multi_gpu_test(model, data_loader, args.tmpdir,
+                                 args.gpu_collect)
+    
+    outputs = post_processing(outputs)
     rank, _ = get_dist_info()
     if rank == 0:
         if args.out:
@@ -209,7 +220,7 @@ def main():
             ]:
                 eval_kwargs.pop(key, None)
             eval_kwargs.update(dict(metric=args.eval, **kwargs))
-            print(dataset.evaluate_pp(outputs, **eval_kwargs))
+            print(dataset.evaluate(outputs, **eval_kwargs))
 
 
 if __name__ == '__main__':
