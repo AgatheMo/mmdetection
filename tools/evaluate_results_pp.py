@@ -4,7 +4,6 @@ import warnings
 import numpy as np
 import mmcv
 import torch
-import numpy as np
 from mmcv import Config, DictAction
 from mmcv.cnn import fuse_conv_bn
 from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
@@ -179,7 +178,7 @@ def main():
 
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
-        outputs = single_gpu_test(model, data_loader, args.show, args.show_dir,
+        outputs = single_gpu_test_pp(model, data_loader, args.show, args.show_dir,
                                   args.show_score_thr)
 
     else:
