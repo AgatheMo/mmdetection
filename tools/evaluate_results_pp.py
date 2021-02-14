@@ -203,7 +203,7 @@ def main():
         outputs = multi_gpu_test(model, data_loader, args.tmpdir,
                                  args.gpu_collect)
     
-    #outputs = post_processing(outputs)
+    outputs = post_processing(outputs)
     rank, _ = get_dist_info()
     if rank == 0:
         if args.out:
