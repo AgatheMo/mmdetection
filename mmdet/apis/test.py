@@ -77,7 +77,7 @@ def post_processing(results):
             det_pp.append(np.array([bboxes[0]]))
             segm_pp.append(np.array([segms[0]]))
         results_pp.append((det_pp,segm_pp))
-     return(results_pp)
+    return(results_pp)
 
 def single_gpu_test_pp(model,
                     data_loader,
