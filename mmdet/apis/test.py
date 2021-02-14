@@ -3,7 +3,7 @@ import pickle
 import shutil
 import tempfile
 import time
-
+import numpy as np
 import mmcv
 import torch
 import torch.distributed as dist
