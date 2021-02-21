@@ -146,7 +146,7 @@ data = dict(
         img_prefix=data_root + 'images_test/',
         pipeline=test_pipeline))
 # optimizer
-optimizer = dict(type='SGD', lr=0.00025, momentum=0.9, weight_decay=5e-4)
+optimizer = dict(type='SGD', lr=0.0005, momentum=0.9, weight_decay=5e-4)
 optimizer_config = dict()
 # learning policy
 lr_config = dict(
@@ -155,6 +155,6 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=0.01,
     step=[20, 42, 49, 52])
-total_epochs = 35
+total_epochs = 70
 cudnn_benchmark = True
 evaluation = dict(metric=['bbox', 'segm'])
