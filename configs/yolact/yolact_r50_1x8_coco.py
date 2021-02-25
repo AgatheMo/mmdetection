@@ -1,7 +1,7 @@
 _base_ = '../_base_/default_runtime.py'
 
 # model settings
-img_size = 550
+img_size = 1333
 model = dict(
     type='YOLACT',
     pretrained='torchvision://resnet50',
@@ -155,6 +155,6 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=0.01,
     step=[20, 42, 49, 52])
-total_epochs = 135
+total_epochs = 70
 cudnn_benchmark = True
 evaluation = dict(metric=['bbox', 'segm'])
