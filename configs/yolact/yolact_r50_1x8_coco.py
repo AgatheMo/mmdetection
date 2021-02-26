@@ -1,7 +1,8 @@
 _base_ = '../_base_/default_runtime.py'
 
 # model settings
-img_size = 1333
+img_size1 = 1500
+img_size2= 2500
 model = dict(
     type='YOLACT',
     pretrained='torchvision://resnet50',
