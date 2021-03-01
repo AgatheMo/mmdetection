@@ -45,4 +45,4 @@ data = dict(
         ann_file=data_root + 'annotations/test_segmentation_SJ.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=test_pipeline))
-evaluation = dict(interval=1, metric=['bbox', 'segm'])
+evaluation = dict(interval=5, metric=['bbox', 'segm'])
