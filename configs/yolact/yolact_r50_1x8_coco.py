@@ -86,7 +86,7 @@ test_cfg = dict(
     max_per_img=100)
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = 'datasetsSJ/coco/'
+data_root = 'datasetsSJ2/coco/'
 img_norm_cfg = dict(
     mean=[123.68, 116.78, 103.94], std=[58.40, 57.12, 57.38], to_rgb=True)
 train_pipeline = [
@@ -132,17 +132,17 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/train_segmentation_SJ.json',
+        ann_file=data_root + 'annotations/train_segmentation_SJ2.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/test_segmentation_SJ.json',
+        ann_file=data_root + 'annotations/test_segmentation_SJ2.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/test_segmentation_SJ.json',
+        ann_file=data_root + 'annotations/test_segmentation_SJ2.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=test_pipeline))
 # optimizer
