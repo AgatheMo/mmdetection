@@ -1,5 +1,5 @@
 dataset_type = 'CocoDataset'
-data_root = 'datasetsSJ/coco/'
+data_root = 'datasetsSJ2/coco/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -32,17 +32,17 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/train_segmentation_SJ.json',
+        ann_file=data_root + 'annotations/train_segmentation_SJ2.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/test_segmentation_SJ.json',
+        ann_file=data_root + 'annotations/test_segmentation_SJ2.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/test_segmentation_SJ.json',
+        ann_file=data_root + 'annotations/test_segmentation_SJ2.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=test_pipeline))
 evaluation = dict(interval=5, metric=['bbox', 'segm'])
