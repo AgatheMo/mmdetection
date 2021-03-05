@@ -32,17 +32,17 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/train_segmentation_SJ_K5.json',
+        ann_file=data_root + 'annotations/train_segmentation_SJ.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/test_segmentation_SJ_K5.json',
+        ann_file=data_root + 'annotations/test_segmentation_SJ.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/test_segmentation_SJ_K5.json',
+        ann_file=data_root + 'annotations/test_segmentation_SJ.json',
         img_prefix=data_root + 'images_SJ/',
         pipeline=test_pipeline))
-evaluation = dict(interval=5, metric=['bbox', 'segm'])
+evaluation = dict(interval=1, metric=['bbox', 'segm'])
