@@ -1,6 +1,6 @@
 
 import matplotlib
-matplotlib.use('pdf')
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import mmcv
 import numpy as np
