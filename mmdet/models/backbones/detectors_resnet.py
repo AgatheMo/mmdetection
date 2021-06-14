@@ -220,6 +220,7 @@ class DetectoRS_ResNet(ResNet):
     """
 
     arch_settings = {
+        18: (Bottleneck, (2, 2, 2, 2)),
         50: (Bottleneck, (3, 4, 6, 3)),
         101: (Bottleneck, (3, 4, 23, 3)),
         152: (Bottleneck, (3, 8, 36, 3))
