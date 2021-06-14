@@ -5,10 +5,10 @@ _base_ = [
 # model settings
 model = dict(
     type='HybridTaskCascade',
-    pretrained='torchvision://resnet18',
+    pretrained='torchvision://resnet50',
     backbone=dict(
         type='ResNet',
-        depth=18,
+        depth=50,
         num_stages=4,
         out_indices=(0, 1, 2, 3),
         frozen_stages=1,
