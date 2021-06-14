@@ -15,7 +15,7 @@ model = dict(
         rfp_backbone=dict(
             rfp_inplanes=256,
             type='DetectoRS_ResNet',
-            depth=50,
+            depth=18,
             num_stages=4,
             out_indices=(0, 1, 2, 3),
             frozen_stages=1,
@@ -24,6 +24,6 @@ model = dict(
             conv_cfg=dict(type='ConvAWS'),
             sac=dict(type='SAC', use_deform=True),
             stage_with_sac=(False, True, True, True),
-            pretrained='torchvision://resnet50',
+            pretrained='torchvision://resnet18',
             style='pytorch')))
 work_dir = './sortie/'
